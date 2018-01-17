@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { TodoService } from './services/todo.service';
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -24,9 +24,11 @@ export class AppComponent implements OnInit {
     ngOnInit() {
       this.service.getMessage()
           .subscribe(data => {
-              if (data) this.title = data;
+              if (data) {
+                this.title = data[0].login;
+                console.log(data[0]);
+              }
           });
     }
 
-    
 }

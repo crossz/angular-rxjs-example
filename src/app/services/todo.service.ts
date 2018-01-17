@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TodoService {
@@ -10,10 +11,10 @@ export class TodoService {
 
 
   getMessage() {
-    return Observable.of("this is a string message.")
-    // return this.http
-    //     .get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`)
-    //     .map(res => res.json())
+    // return Observable.of('this is a string message.')
+    return this.http
+        .get(`https://api.github.com/orgs/angular/members?page=1&per_page=5`)
+        .map(res => res.json());
   }
 
 
